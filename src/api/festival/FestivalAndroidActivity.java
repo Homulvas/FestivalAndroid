@@ -15,6 +15,7 @@ import android.widget.Toast;
 public class FestivalAndroidActivity extends Activity {
 	/** Called when the activity is first created. */
 	static final String[] EVENTS = new String[] { "LeFag Event" };
+	static final int size = 10;
 	private ListView list;
 	private Button ok;
 	private TextView entry;
@@ -37,20 +38,23 @@ public class FestivalAndroidActivity extends Activity {
 				String entryText = entry.getText().toString();
 				
 				HashMap<String,String> map = new HashMap<String, String>();
-				map.put("festival", entryText);
-				
+				map.put("title", entryText);
+				map.put("size", Integer.toString(size));
+				int from = 0;
+				map.put("from", Integer.toString(from));
 				Event[] events = api.getEvents(map);
 				
 				ArrayList<String> names = new ArrayList<String>();
 				
-				if (events != null) {
-					for (Event event:  events) {
+				while (events.length != 0) {
+					for (Event event: events) {
 						names.add(event.getTitle());
 					}
-				} else {
-					Toast.makeText(getApplicationContext(), "??????",
-					          Toast.LENGTH_SHORT).show();
+					from += size;
+					map.put("from", Integer.toString(from));
+					events = api.getEvents(map);
 				}
+				
 				ArrayAdapter<String> adapter = new ArrayAdapter<String>(list.getContext(), R.layout.list, names);
 				list.setAdapter(adapter);
 			}
