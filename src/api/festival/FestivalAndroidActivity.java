@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,7 +22,7 @@ public class FestivalAndroidActivity extends Activity {
 	static final int size = 10;
 	private ListView list;
 	private Button ok;
-	private TextView entry;
+	private EditText entry;
 	private API api;
 	private ProgressDialog dialog;
 
@@ -34,13 +36,17 @@ public class FestivalAndroidActivity extends Activity {
 		list.setAdapter(new ArrayAdapter<String>(this, R.layout.list, EVENTS));
 
 		ok = (Button) findViewById(R.id.ok);
-		entry = (TextView) findViewById(R.id.entry);
+		entry = (EditText) findViewById(R.id.entry);
 		ok.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View arg0) {
-				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "",
-						"Loading. Please wait...", true);
-				new EventThread(list).start();
+				if (entry.getText().length() != 0) {
+					((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+							.hideSoftInputFromWindow(entry.getWindowToken(), 0);
+					dialog = ProgressDialog.show(FestivalAndroidActivity.this,
+							"", "Loading. Please wait...", true);
+					new EventThread(list).start();
+				}
 			}
 
 		});
@@ -66,6 +72,7 @@ public class FestivalAndroidActivity extends Activity {
 			Event[] events = api.getEvents(map);
 
 			ArrayList<String> names = new ArrayList<String>();
+
 			while (events.length != 0) {
 				for (Event event : events) {
 					names.add(event.getTitle());
@@ -74,12 +81,14 @@ public class FestivalAndroidActivity extends Activity {
 				map.put("from", Integer.toString(from));
 				events = api.getEvents(map);
 			}
-			adapter = new ArrayAdapter<String>(
-					list.getContext(), R.layout.list, names);
+
+			adapter = new ArrayAdapter<String>(list.getContext(),
+					R.layout.list, names);
 			handler.sendEmptyMessage(0);
 		}
 
 		private Handler handler = new Handler() {
+
 			public void handleMessage(Message msg) {
 				listView.setAdapter(adapter);
 				dialog.dismiss();
