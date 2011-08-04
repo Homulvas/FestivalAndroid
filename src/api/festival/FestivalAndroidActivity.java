@@ -10,11 +10,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class FestivalAndroidActivity extends Activity {
 	/** Called when the activity is first created. */
@@ -49,6 +51,15 @@ public class FestivalAndroidActivity extends Activity {
 				}
 			}
 
+		});
+		list.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Toast.makeText(list.getContext(), list.getItemAtPosition((int) arg3).toString(), 1000).show();
+			}
+			
 		});
 	}
 
