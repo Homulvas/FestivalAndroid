@@ -1,6 +1,8 @@
 package api.festival;
 
-public class Event {
+import java.io.Serializable;
+
+public class Event implements Serializable{
 	private String age_category;
 	private String artist;
 	private String code;

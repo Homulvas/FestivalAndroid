@@ -21,7 +21,6 @@ import android.widget.ListView;
 
 public class FestivalAndroidActivity extends Activity {
 	/** Called when the activity is first created. */
-	static final String[] EVENTS = new String[]{};
 	static final int size = 10;
 	private ListView list;
 	private Button ok;
@@ -36,7 +35,7 @@ public class FestivalAndroidActivity extends Activity {
 		api = new API("3FPE9X151AMKIqrv", "V6KLOjmYaz8r_cYWTKIfVPfkHIiIj7Ha");
 
 		list = (ListView) findViewById(R.id.list);
-		list.setAdapter(new ArrayAdapter<String>(this, R.layout.list, EVENTS));
+		list.setAdapter(new ArrayAdapter<String>(this, R.layout.list, new String[]{}));
 
 		ok = (Button) findViewById(R.id.ok);
 		entry = (EditText) findViewById(R.id.entry);
@@ -58,8 +57,10 @@ public class FestivalAndroidActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Intent myIntent = new Intent(arg1.getContext(), EventActivity.class);
-                startActivityForResult(myIntent, 0);
+				Intent eventIntent = new Intent(arg1.getContext(), EventActivity.class);
+				Event trol = (Event) list.getItemAtPosition(arg2);
+				//eventIntent.putExtra("event", trol);
+               // startActivityForResult(eventIntent, 0);
 			}
 			
 		});
@@ -68,7 +69,7 @@ public class FestivalAndroidActivity extends Activity {
 	private class EventThread extends Thread {
 
 		private ListView listView;
-		private ArrayAdapter<String> adapter;
+		private ArrayAdapter<Event> adapter;
 
 		public EventThread(ListView listView) {
 			this.listView = listView;
@@ -84,18 +85,17 @@ public class FestivalAndroidActivity extends Activity {
 			map.put("from", Integer.toString(from));
 			Event[] events = api.getEvents(map);
 
-			ArrayList<String> names = new ArrayList<String>();
+			ArrayList<Event> names = new ArrayList<Event>();
 
 			while (events.length != 0) {
 				for (Event event : events) {
-					names.add(event.getTitle());
+					names.add(event);
 				}
 				from += size;
 				map.put("from", Integer.toString(from));
 				events = api.getEvents(map);
 			}
-			Collections.sort(names);
-			adapter = new ArrayAdapter<String>(list.getContext(),
+			adapter = new ArrayAdapter<Event>(list.getContext(),
 					R.layout.list, names);
 			handler.sendEmptyMessage(0);
 		}
