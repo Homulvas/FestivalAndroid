@@ -1,6 +1,8 @@
 package api.festival;
 
-public class Venue {
+import java.io.Serializable;
+
+public class Venue implements Serializable{
 	private String address;
 	private String description;
 	private String name;

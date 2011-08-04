@@ -2,7 +2,7 @@ package api.festival;
 
 import java.io.Serializable;
 
-public class Event implements Serializable{
+public class Event implements Serializable {
 	private String age_category;
 	private String artist;
 	private String code;
@@ -18,10 +18,12 @@ public class Event implements Serializable{
 	private String website;
 	private Venue venue;
 	private Performances[] performances;
-	
-	public String getTitle()
-	{
+
+	public String getTitle() {
 		return title;
 	}
-}
 
+	public String getDescription() {
+		return description;
+	}
+}

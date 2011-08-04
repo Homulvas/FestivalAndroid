@@ -1,6 +1,8 @@
 package api.festival;
 
-public class Performances {
+import java.io.Serializable;
+
+public class Performances implements Serializable{
 	private String concession;
 	private String end;
 	private String price;

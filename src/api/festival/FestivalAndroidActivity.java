@@ -58,9 +58,8 @@ public class FestivalAndroidActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				Intent eventIntent = new Intent(arg1.getContext(), EventActivity.class);
-				Event trol = (Event) list.getItemAtPosition(arg2);
-				//eventIntent.putExtra("event", trol);
-               // startActivityForResult(eventIntent, 0);
+				eventIntent.putExtra("event", (Event) list.getItemAtPosition((int) arg3));
+                startActivityForResult(eventIntent, 0);
 			}
 			
 		});

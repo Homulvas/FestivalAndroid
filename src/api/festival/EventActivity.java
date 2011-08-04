@@ -13,7 +13,9 @@ public class EventActivity extends Activity{
 		TextView festival = (TextView) findViewById(R.id.festival);
 		TextView description = (TextView) findViewById(R.id.description);
 		
-		festival.setText("Trolz");
-		description.setText("herp derp derp");
+		Event event = (Event) getIntent().getSerializableExtra("event");
+		
+		festival.setText(event.getTitle());
+		description.setText(event.getDescription());
 	}
 }
