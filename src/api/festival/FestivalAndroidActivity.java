@@ -21,7 +21,7 @@ import android.widget.ListView;
 
 public class FestivalAndroidActivity extends Activity {
 	/** Called when the activity is first created. */
-	static final String[] EVENTS = new String[] { "LeFag Event" };
+	static final String[] EVENTS = new String[]{};
 	static final int size = 10;
 	private ListView list;
 	private Button ok;
