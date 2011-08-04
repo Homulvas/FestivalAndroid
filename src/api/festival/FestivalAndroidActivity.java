@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class FestivalAndroidActivity extends Activity {
 	/** Called when the activity is first created. */
@@ -58,7 +58,8 @@ public class FestivalAndroidActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Toast.makeText(list.getContext(), list.getItemAtPosition((int) arg3).toString(), 1000).show();
+				Intent myIntent = new Intent(arg1.getContext(), EventActivity.class);
+                startActivityForResult(myIntent, 0);
 			}
 			
 		});
