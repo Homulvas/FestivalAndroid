@@ -69,7 +69,7 @@ public class FestivalAndroidActivity extends Activity {
 	private class EventThread extends Thread {
 
 		private ListView listView;
-		private ArrayAdapter<Event> adapter;
+		private EventAdapter adapter;
 
 		public EventThread(ListView listView) {
 			this.listView = listView;
@@ -95,7 +95,7 @@ public class FestivalAndroidActivity extends Activity {
 				map.put("from", Integer.toString(from));
 				events = api.getEvents(map);
 			}
-			adapter = new ArrayAdapter<Event>(list.getContext(),
+			adapter = new EventAdapter(list.getContext(),
 					R.layout.list, names);
 			handler.sendEmptyMessage(0);
 		}
