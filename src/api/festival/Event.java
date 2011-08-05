@@ -2,7 +2,7 @@ package api.festival;
 
 import java.io.Serializable;
 
-public class Event implements Serializable {
+public class Event implements Serializable, Comparable<Event> {
 	private String age_category;
 	private String artist;
 	private String code;
@@ -29,5 +29,10 @@ public class Event implements Serializable {
 
 	public Performances[] getPerformances() {
 		return performances;
+	}
+
+	@Override
+	public int compareTo(Event arg0) {
+		return title.compareTo(arg0.getTitle());
 	}
 }

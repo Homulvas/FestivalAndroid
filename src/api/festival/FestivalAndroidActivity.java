@@ -1,6 +1,7 @@
 package api.festival;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import android.app.Activity;
@@ -75,6 +76,7 @@ public class FestivalAndroidActivity extends Activity {
 
 		public void run() {
 			String entryText = entry.getText().toString();
+			entryText = entryText.trim();
 
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("festival", entryText);
@@ -93,6 +95,7 @@ public class FestivalAndroidActivity extends Activity {
 				map.put("from", Integer.toString(from));
 				events = api.getEvents(map);
 			}
+			Collections.sort(names);
 			adapter = new EventAdapter(list.getContext(),
 					R.layout.list, names);
 			handler.sendEmptyMessage(0);
