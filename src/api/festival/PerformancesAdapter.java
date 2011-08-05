@@ -39,7 +39,13 @@ public class PerformancesAdapter extends ArrayAdapter<Performances> {
 			TextView concession = (TextView) v.findViewById(R.id.concession);
 
 			if (concession != null) {
-				concession.setText(e.getConcession());
+				String conc = e.getConcession();
+				if (conc.equals("0")) {
+					v.findViewById(R.id.concession_text).setVisibility(4);
+					concession.setVisibility(8);
+				} else {
+				concession.setText(conc);
+				}
 			}
 
 			TextView start = (TextView) v.findViewById(R.id.start);

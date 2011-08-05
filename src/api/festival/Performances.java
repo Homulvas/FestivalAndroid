@@ -9,6 +9,9 @@ public class Performances implements Serializable{
 	private String start;
 	
 	public String getPrice(){
+		if (price.equals("0")) {
+			return "Free";
+		}
 		return price;
 	}
 

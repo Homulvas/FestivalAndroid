@@ -62,7 +62,7 @@
         android:textSize="8pt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/concession_text"
+        android:text="@string/end_text"
         android:layout_toLeftOf="@id/end"
         android:layout_alignTop="@id/end"/>
 </RelativeLayout>
