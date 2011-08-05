@@ -4,17 +4,65 @@
     android:layout_height="fill_parent">
     <TextView
         android:id="@+id/price"
-        android:textSize="12pt"
+        android:textSize="10pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="10dip"
-        android:text="@string/price_text"/>
+        android:layout_marginLeft="10dip"/>
     <TextView
         android:id="@+id/price_text"
-        android:textSize="12pt"
-        android:layout_width="wrap_content"
+        android:textSize="10pt"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="@string/price_text"
         android:layout_toLeftOf="@id/price"
         android:layout_alignTop="@id/price"/>
+    <TextView
+        android:id="@+id/concession"
+        android:textSize="8pt"
+        android:layout_below="@id/price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dip"/>
+    <TextView
+        android:id="@+id/concession_text"
+        android:textSize="8pt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/concession_text"
+        android:layout_toLeftOf="@id/concession"
+        android:layout_alignTop="@id/concession"/>
+    <TextView
+        android:id="@+id/start"
+        android:textSize="10pt"
+        android:layout_below="@id/concession_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dip"/>
+    <TextView
+        android:id="@+id/start_text"
+        android:textSize="10pt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start_text"
+        android:layout_toLeftOf="@id/start"
+        android:layout_alignTop="@id/start"/>
+    <TextView
+        android:id="@+id/end"
+        android:textSize="8pt"
+        android:layout_below="@id/start_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dip"/>
+    <TextView
+        android:id="@+id/end_text"
+        android:textSize="8pt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/concession_text"
+        android:layout_toLeftOf="@id/end"
+        android:layout_alignTop="@id/end"/>
 </RelativeLayout>

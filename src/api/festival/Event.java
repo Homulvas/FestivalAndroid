@@ -26,4 +26,8 @@ public class Event implements Serializable {
 	public String getDescription() {
 		return description;
 	}
+
+	public Performances[] getPerformances() {
+		return performances;
+	}
 }

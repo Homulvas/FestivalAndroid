@@ -7,4 +7,20 @@ public class Performances implements Serializable{
 	private String end;
 	private String price;
 	private String start;
+	
+	public String getPrice(){
+		return price;
+	}
+
+	public String getConcession() {
+		return concession;
+	}
+
+	public CharSequence getStart() {
+		return start;
+	}
+
+	public CharSequence getEnd() {
+		return end;
+	}
 }
