@@ -18,5 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/festival"
         android:layout_weight="1"/>
+   <ListView android:layout_width="fill_parent"
+        android:id="@+id/performanceList"
+        android:layout_below="@id/description"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 </RelativeLayout>
 </ScrollView>
