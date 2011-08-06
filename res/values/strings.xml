@@ -5,4 +5,10 @@
     <string name="concession_text">Concession: </string>
     <string name="start_text">Start: </string>
     <string name="end_text">End: </string>
+    <string name="art">Art</string>
+    <string name="book">Book</string>
+    <string name="international">International</string>
+    <string name="jazz">Jazz</string>
+    <string name="mela">Mela</string>
+    <string name="tattoo">Tattoo</string>
 </resources>

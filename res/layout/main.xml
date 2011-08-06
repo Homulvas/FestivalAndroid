@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
     <EditText
         android:id="@+id/entry"
         android:layout_width="fill_parent"
@@ -11,11 +17,58 @@
         android:id="@+id/ok"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/entry"
         android:text="OK" />
-    <ListView android:layout_width="fill_parent"
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+    <Button
+    	android:id="@+id/international"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/international" />
+    <Button
+        android:id="@+id/book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/book" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/art" />
+       </LinearLayout>
+   <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+    <Button
+        android:id="@+id/tattoo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tattoo" />
+    <Button
+        android:id="@+id/mela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mela" />
+    <Button
+        android:id="@+id/jazz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jazz" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+    <ListView 
+        android:layout_width="fill_parent"
         android:id="@+id/list"
-        android:layout_below="@id/ok"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
-</RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

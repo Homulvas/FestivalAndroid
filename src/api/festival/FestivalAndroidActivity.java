@@ -76,6 +76,7 @@ public class FestivalAndroidActivity extends Activity {
 
 		public void run() {
 			String entryText = entry.getText().toString();
+			entryText = entryText.replace("\n", " ");
 			entryText = entryText.trim();
 
 			HashMap<String, String> map = new HashMap<String, String>();
