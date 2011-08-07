@@ -20,10 +20,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 public class FestivalAndroidActivity extends Activity {
-	/** Called when the activity is first created. */
 	static final int size = 10;
-	private ListView list;
-	private Button ok;
+	private Button ok, art, book, international, jazz, mela, tattoo;
 	private EditText entry;
 	private API api;
 	private ProgressDialog dialog;
@@ -33,9 +31,6 @@ public class FestivalAndroidActivity extends Activity {
 		setContentView(R.layout.main);
 
 		api = new API("3FPE9X151AMKIqrv", "V6KLOjmYaz8r_cYWTKIfVPfkHIiIj7Ha");
-
-		list = (ListView) findViewById(R.id.list);
-		list.setAdapter(new ArrayAdapter<String>(this, R.layout.list, new String[]{}));
 
 		ok = (Button) findViewById(R.id.ok);
 		entry = (EditText) findViewById(R.id.entry);
@@ -52,6 +47,74 @@ public class FestivalAndroidActivity extends Activity {
 			}
 
 		});
+		
+		art = (Button) findViewById(R.id.art);
+		art.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		book = (Button) findViewById(R.id.book);
+		book.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		international = (Button) findViewById(R.id.international);
+		international.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		jazz = (Button) findViewById(R.id.jazz);
+		jazz.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		mela = (Button) findViewById(R.id.mela);
+		mela.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		tattoo = (Button) findViewById(R.id.tattoo);
+		tattoo.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		
 		list.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
@@ -80,7 +143,7 @@ public class FestivalAndroidActivity extends Activity {
 			entryText = entryText.trim();
 
 			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("festival", entryText);
+			map.put("title", entryText);
 			map.put("size", Integer.toString(size));
 			int from = 0;
 			map.put("from", Integer.toString(from));

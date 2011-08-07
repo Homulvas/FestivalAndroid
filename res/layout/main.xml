@@ -2,23 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_alignParentRight="true"
+        android:text="OK" />
     <EditText
         android:id="@+id/entry"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/ok"
+        android:layout_alignTop="@id/ok"
         android:background="@android:drawable/editbox_background"/>
-    <Button
-        android:id="@+id/ok"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="OK" />
-    </LinearLayout>
+	</RelativeLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -28,20 +29,14 @@
     	android:id="@+id/art"
     	android:layout_weight="1"
         android:layout_width="0px"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:text="@string/art" />
     <Button
         android:id="@+id/book"
         android:layout_weight="1"
         android:layout_width="0px"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:text="@string/book" />
-    <Button
-    	android:id="@+id/international"
-    	android:layout_weight="1"
-        android:layout_width="0px"
-        android:layout_height="wrap_content"
-        android:text="@string/international" />
        </LinearLayout>
    <LinearLayout
         android:orientation="horizontal"
@@ -52,28 +47,31 @@
         android:id="@+id/jazz"
         android:layout_weight="1"
         android:layout_width="0px"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:text="@string/jazz" />
+    <Button
+    	android:id="@+id/international"
+    	android:layout_weight="1"
+        android:layout_width="0px"
+        android:layout_height="fill_parent"
+        android:text="@string/international" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
     <Button
         android:id="@+id/mela"
         android:layout_weight="1"
         android:layout_width="0px"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:text="@string/mela" />
     <Button
         android:id="@+id/tattoo"
         android:layout_weight="1"
         android:layout_width="0px"
-        android:layout_height="wrap_content"
-        android:text="@string/tattoo" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content" android:layout_height="310dp">
-    <ListView 
-        android:layout_width="fill_parent"
-        android:id="@+id/list"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
-    </LinearLayout>
+        android:layout_height="fill_parent"
+        android:text="@string/tattoo" />   
+    </LinearLayout>    
 </LinearLayout>
