@@ -33,15 +33,13 @@ public class FestivalAndroidActivity extends Activity {
 		ok.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View arg0) {
-				if (entry.getText().length() != 0) {
+				String text = entry.getText().toString(); 
+				if (text.length() != 0) {
 					((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
 							.hideSoftInputFromWindow(entry.getWindowToken(), 0);
 					dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 							"", "Loading. Please wait...", true);
-					new EventThread().start();
-					
-//					list.setAdapter(new ArrayAdapter<String>(this, R.layout.list, new String[]{}));
-					
+					new EventThread("title", text).start();
 				}
 			}
 
@@ -50,10 +48,10 @@ public class FestivalAndroidActivity extends Activity {
 		art = (Button) findViewById(R.id.art);
 		art.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
+				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
+						"", "Loading. Please wait...", true);
+				new EventThread("festival", "art").start();
 			}
 			
 		});
@@ -61,10 +59,10 @@ public class FestivalAndroidActivity extends Activity {
 		book = (Button) findViewById(R.id.book);
 		book.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
+				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
+						"", "Loading. Please wait...", true);
+				new EventThread("festival", "book").start();
 			}
 			
 		});
@@ -72,10 +70,10 @@ public class FestivalAndroidActivity extends Activity {
 		international = (Button) findViewById(R.id.international);
 		international.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
+				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
+						"", "Loading. Please wait...", true);
+				new EventThread("festival", "international").start();
 			}
 			
 		});
@@ -83,10 +81,10 @@ public class FestivalAndroidActivity extends Activity {
 		jazz = (Button) findViewById(R.id.jazz);
 		jazz.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
+				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
+						"", "Loading. Please wait...", true);
+				new EventThread("festival", "jazz").start();
 			}
 			
 		});
@@ -94,10 +92,10 @@ public class FestivalAndroidActivity extends Activity {
 		mela = (Button) findViewById(R.id.mela);
 		mela.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
+				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
+						"", "Loading. Please wait...", true);
+				new EventThread("festival", "mela").start();
 			}
 			
 		});
@@ -105,10 +103,10 @@ public class FestivalAndroidActivity extends Activity {
 		tattoo = (Button) findViewById(R.id.tattoo);
 		tattoo.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
+				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
+						"", "Loading. Please wait...", true);
+				new EventThread("festival", "tattoo").start();
 			}
 			
 		});
@@ -118,14 +116,19 @@ public class FestivalAndroidActivity extends Activity {
 	private class EventThread extends Thread {
 
 		private ArrayList<Event> names;
-
+		private String key, value;
+		
+		public EventThread(String key, String value) {
+			this.key = key;
+			this.value = value;
+		}
+		
 		public void run() {
-			String entryText = "jazz";
-			entryText = entryText.replace("\n", " ");
-			entryText = entryText.trim();
+			value = value.replace("\n", " ");
+			value = value.trim();
 
 			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("festival", entryText);
+			map.put(key, value);
 			map.put("size", Integer.toString(size));
 			int from = 0;
 			map.put("from", Integer.toString(from));

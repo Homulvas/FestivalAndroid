@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class FestivalsActivity extends Activity{
 	private ListView list;
@@ -33,7 +32,5 @@ public class FestivalsActivity extends Activity{
 		ArrayList<Event> events = (ArrayList<Event>) getIntent().getSerializableExtra("events");
 		list.setAdapter(new EventAdapter(this, 0, events));
 	}
-	
-	
 
 }
