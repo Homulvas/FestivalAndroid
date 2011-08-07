@@ -11,4 +11,5 @@
     <string name="jazz">Jazz</string>
     <string name="mela">Mela</string>
     <string name="tattoo">Tattoo</string>
+    <string name="entry_text">Enter event title</string>
 </resources>

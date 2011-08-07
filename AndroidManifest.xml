@@ -7,15 +7,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".FestivalAndroidActivity"
-        android:windowSoftInputMode="adjustPan"
-                  android:label="@string/app_name">
+        <activity android:windowSoftInputMode="adjustPan"
+                  android:label="@string/app_name" android:name="FestivalAndroidActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="EventActivity"></activity>
+        <activity android:name="FestivalsActivity"></activity>
 
     </application>
 </manifest>
