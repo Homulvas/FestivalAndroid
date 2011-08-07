@@ -25,19 +25,23 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
     <Button
-    	android:id="@+id/international"
-        android:layout_width="wrap_content"
+    	android:id="@+id/art"
+    	android:layout_weight="1"
+        android:layout_width="0px"
         android:layout_height="wrap_content"
-        android:text="@string/international" />
+        android:text="@string/art" />
     <Button
         android:id="@+id/book"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0px"
         android:layout_height="wrap_content"
         android:text="@string/book" />
     <Button
-        android:layout_width="wrap_content"
+    	android:id="@+id/international"
+    	android:layout_weight="1"
+        android:layout_width="0px"
         android:layout_height="wrap_content"
-        android:text="@string/art" />
+        android:text="@string/international" />
        </LinearLayout>
    <LinearLayout
         android:orientation="horizontal"
@@ -45,26 +49,27 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
     <Button
-        android:id="@+id/tattoo"
-        android:layout_width="wrap_content"
+        android:id="@+id/jazz"
+        android:layout_weight="1"
+        android:layout_width="0px"
         android:layout_height="wrap_content"
-        android:text="@string/tattoo" />
+        android:text="@string/jazz" />
     <Button
         android:id="@+id/mela"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0px"
         android:layout_height="wrap_content"
         android:text="@string/mela" />
     <Button
-        android:id="@+id/jazz"
-        android:layout_width="wrap_content"
+        android:id="@+id/tattoo"
+        android:layout_weight="1"
+        android:layout_width="0px"
         android:layout_height="wrap_content"
-        android:text="@string/jazz" />
+        android:text="@string/tattoo" />
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_width="wrap_content" android:layout_height="310dp">
     <ListView 
         android:layout_width="fill_parent"
         android:id="@+id/list"
