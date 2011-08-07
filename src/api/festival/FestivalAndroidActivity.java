@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 public class FestivalAndroidActivity extends Activity {
 	static final int size = 10;
@@ -37,12 +36,12 @@ public class FestivalAndroidActivity extends Activity {
 				if (entry.getText().length() != 0) {
 					((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
 							.hideSoftInputFromWindow(entry.getWindowToken(), 0);
-//					Intent festivalsIntent = new Intent(arg0.getContext(), FestivalsActivity.class);
-//					festivalsIntent.putExtra("title", entry.getText());
-//	                startActivityForResult(festivalsIntent, 0);
 					dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 							"", "Loading. Please wait...", true);
-//					new EventThread(list).start();
+					new EventThread().start();
+					
+//					list.setAdapter(new ArrayAdapter<String>(this, R.layout.list, new String[]{}));
+					
 				}
 			}
 
@@ -118,26 +117,21 @@ public class FestivalAndroidActivity extends Activity {
 
 	private class EventThread extends Thread {
 
-		private ListView listView;
-		private EventAdapter adapter;
-
-		public EventThread(ListView listView) {
-			this.listView = listView;
-		}
+		private ArrayList<Event> names;
 
 		public void run() {
-			String entryText = "joe";
+			String entryText = "jazz";
 			entryText = entryText.replace("\n", " ");
 			entryText = entryText.trim();
 
 			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("title", entryText);
+			map.put("festival", entryText);
 			map.put("size", Integer.toString(size));
 			int from = 0;
 			map.put("from", Integer.toString(from));
 			Event[] events = api.getEvents(map);
 
-			ArrayList<Event> names = new ArrayList<Event>();
+			names = new ArrayList<Event>();
 
 			while (events.length != 0) {
 				for (Event event : events) {
@@ -148,16 +142,16 @@ public class FestivalAndroidActivity extends Activity {
 				events = api.getEvents(map);
 			}
 			Collections.sort(names);
-			adapter = new EventAdapter(listView.getContext(),
-					R.layout.list, names);
 			handler.sendEmptyMessage(0);
 		}
 
 		private Handler handler = new Handler() {
 
 			public void handleMessage(Message msg) {
-				listView.setAdapter(adapter);
 				dialog.dismiss();
+				Intent festivalsIntent = new Intent(FestivalAndroidActivity.this, FestivalsActivity.class);
+				festivalsIntent.putExtra("events", names);
+                startActivityForResult(festivalsIntent, 0);
 			}
 		};
 	}
