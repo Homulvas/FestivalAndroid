@@ -36,11 +36,11 @@ public class API {
 		}
 	}
 
-	public Event[] getEvents(HashMap<String, String> query) {
+	public Item[] getEvents(HashMap<String, String> query) {
 		return getEvents(query, FORMAT_JSON);
 	}
 
-	public Event[] getEvents(HashMap<String, String> query, String format) {
+	public Item[] getEvents(HashMap<String, String> query, String format) {
 		String params = "";
 		for (String key : query.keySet()) {
 			params += key + "=" + query.get(key) + "&";
@@ -53,8 +53,8 @@ public class API {
 		}
 	}
 
-	private Event[] parse(String request) {
-		Event[] events = new Gson().fromJson(request, Event[].class);
+	private Item[] parse(String request) {
+		Item[] events = new Gson().fromJson(request, Item[].class);
 		return events;
 	}
 	

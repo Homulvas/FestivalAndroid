@@ -29,8 +29,8 @@ public class FestivalsActivity extends Activity{
 			}
 			
 		});
-		ArrayList<Event> events = (ArrayList<Event>) getIntent().getSerializableExtra("events");
-		list.setAdapter(new EventAdapter(this, 0, events));
+		ArrayList<Item> events = (ArrayList<Item>) getIntent().getSerializableExtra("items");
+		list.setAdapter(new ItemAdapter(this, 0, events));
 	}
 
 }

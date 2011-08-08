@@ -31,7 +31,6 @@ public class Event implements Serializable, Comparable<Event> {
 		return performances;
 	}
 
-	@Override
 	public int compareTo(Event arg0) {
 		return title.compareTo(arg0.getTitle());
 	}

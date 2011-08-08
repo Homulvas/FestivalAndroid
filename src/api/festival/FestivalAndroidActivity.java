@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class FestivalAndroidActivity extends Activity {
 	static final int size = 10;
@@ -115,7 +116,7 @@ public class FestivalAndroidActivity extends Activity {
 
 	private class EventThread extends Thread {
 
-		private ArrayList<Event> names;
+		private ArrayList<Item> names;
 		private String key, value;
 		
 		public EventThread(String key, String value) {
@@ -132,17 +133,17 @@ public class FestivalAndroidActivity extends Activity {
 			map.put("size", Integer.toString(size));
 			int from = 0;
 			map.put("from", Integer.toString(from));
-			Event[] events = api.getEvents(map);
+			Item[] items = api.getEvents(map);
 
-			names = new ArrayList<Event>();
+			names = new ArrayList<Item>();
 
-			while (events.length != 0) {
-				for (Event event : events) {
-					names.add(event);
+			while (items.length != 0) {
+				for (Item item : items) {
+					names.add(item);
 				}
 				from += size;
 				map.put("from", Integer.toString(from));
-				events = api.getEvents(map);
+				items = api.getEvents(map);
 			}
 			Collections.sort(names);
 			handler.sendEmptyMessage(0);
@@ -153,7 +154,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void handleMessage(Message msg) {
 				dialog.dismiss();
 				Intent festivalsIntent = new Intent(FestivalAndroidActivity.this, FestivalsActivity.class);
-				festivalsIntent.putExtra("events", names);
+				festivalsIntent.putExtra("items", names);
                 startActivityForResult(festivalsIntent, 0);
 			}
 		};
