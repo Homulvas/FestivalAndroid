@@ -15,6 +15,7 @@ public class EventActivity extends Activity{
 		setContentView(R.layout.event);
 		
 		Event event = (Event) getIntent().getSerializableExtra("event");
+		if (event != null) {
 		Performances[] performances = event.getPerformances();
 		
 		View headerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.event_footer, null, false); 
@@ -29,5 +30,6 @@ public class EventActivity extends Activity{
 		TextView description = (TextView) findViewById(R.id.description);
 		festival.setText(event.getTitle());
 		description.setText(event.getDescription());
+		}
 	}
 }

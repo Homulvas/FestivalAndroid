@@ -24,7 +24,10 @@ public class FestivalsActivity extends Activity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				Intent eventIntent = new Intent(arg1.getContext(), EventActivity.class);
-				eventIntent.putExtra("event", (Event) list.getItemAtPosition((int) arg3));
+				String id = ((Item) list.getItemAtPosition((int) arg3)).getUrl();
+				Event eve = new API("3FPE9X151AMKIqrv", "V6KLOjmYaz8r_cYWTKIfVPfkHIiIj7Ha").getEventFromUrl(id);
+				
+				eventIntent.putExtra("event", eve);
                 startActivityForResult(eventIntent, 0);
 			}
 			
