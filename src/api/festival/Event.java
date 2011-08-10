@@ -34,4 +34,12 @@ public class Event implements Serializable, Comparable<Event> {
 	public int compareTo(Event arg0) {
 		return title.compareTo(arg0.getTitle());
 	}
+	
+	public String getLatitude() {
+		return latitude;
+	}
+	
+	public String getLongitude() {
+		return longitude;
+	}
 }

@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="OK" />
+        android:text="@string/ok" />
     <EditText
         android:id="@+id/entry"
         android:hint="@string/entry_text"

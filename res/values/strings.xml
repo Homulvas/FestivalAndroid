@@ -12,4 +12,6 @@
     <string name="mela">Edinburgh Mela Festival</string>
     <string name="tattoo">Edinburgh Military Tattoo</string>
     <string name="entry_text">Enter event title</string>
+    <string name="ok">Ok</string>
+    <string name="show_map">Show map</string>
 </resources>
