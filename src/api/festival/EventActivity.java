@@ -32,8 +32,8 @@ public class EventActivity extends Activity{
 
 			public void onClick(View arg0) {
 				Intent mapIntent = new Intent(EventActivity.this, EventMap.class);
-				mapIntent.putExtra("longitude", Integer.parseInt(event.getLongitude()));
-				mapIntent.putExtra("latitude", Integer.parseInt(event.getLongitude()));
+				mapIntent.putExtra("longitude", Float.parseFloat(event.getLongitude()));
+				mapIntent.putExtra("latitude", Float.parseFloat(event.getLatitude()));
                 startActivityForResult(mapIntent, 0);
 			}
 			
