@@ -28,16 +28,23 @@ public class EventActivity extends Activity{
 				R.layout.performance_list, performances);
 		performanceList.addHeaderView(headerView);
 		Button showMap = (Button) findViewById(R.id.show_map);
+		
+		final float lon = Float.parseFloat(event.getLongitude());
+		final float lat = Float.parseFloat(event.getLatitude());
+		if (lon != 0 || lat != 0) {
 		showMap.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
 				Intent mapIntent = new Intent(EventActivity.this, EventMap.class);
-				mapIntent.putExtra("longitude", Float.parseFloat(event.getLongitude()));
-				mapIntent.putExtra("latitude", Float.parseFloat(event.getLatitude()));
+				mapIntent.putExtra("longitude", lon);
+				mapIntent.putExtra("latitude", lat);
                 startActivityForResult(mapIntent, 0);
 			}
 			
 		});
+		} else {
+			showMap.setVisibility(8);
+		}
 		performanceList.setAdapter(adapter);
 		
 		TextView festival = (TextView) findViewById(R.id.festival);

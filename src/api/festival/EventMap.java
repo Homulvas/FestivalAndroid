@@ -19,9 +19,10 @@ public class EventMap extends MapActivity{
 	    MapView mapView = (MapView) findViewById(R.id.mapview);
 	    mapView.setBuiltInZoomControls(true);
 	    
-	    float longitude = (Float) getIntent().getSerializableExtra("longitude");
-	    float latitude = (Float) getIntent().getSerializableExtra("latitude");
-	    GeoPoint point = new GeoPoint(longitude, latitude);
+	    float longitude = (Float) getIntent().getSerializableExtra("longitude") * 1000000;
+	    float latitude = (Float) getIntent().getSerializableExtra("latitude") * 1000000;
+	    
+	    GeoPoint point = new GeoPoint((int)latitude, (int)longitude);
 	    
 	    List<Overlay> mapOverlays = mapView.getOverlays();
 	    Drawable drawable = this.getResources().getDrawable(R.drawable.map);
