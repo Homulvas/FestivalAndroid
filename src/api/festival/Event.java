@@ -3,6 +3,10 @@ package api.festival;
 import java.io.Serializable;
 
 public class Event implements Serializable, Comparable<Event> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2396607897795865383L;
 	private String age_category;
 	private String artist;
 	private String code;
@@ -41,5 +45,45 @@ public class Event implements Serializable, Comparable<Event> {
 	
 	public String getLongitude() {
 		return longitude;
+	}
+	
+	public String getAgeCategory() {
+		return age_category;
+	}
+
+	public String getArtist() {
+		return artist;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getFestival() {
+		return festival;
+	}
+
+	public String getFestivalId() {
+		return festival_id;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public String getUpdated() {
+		return updated;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public Venue getVenue() {
+		return venue;
 	}
 }

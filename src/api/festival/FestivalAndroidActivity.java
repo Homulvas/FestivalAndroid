@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class FestivalAndroidActivity extends Activity {
 	static final int size = 10;
@@ -152,9 +153,13 @@ public class FestivalAndroidActivity extends Activity {
 
 			public void handleMessage(Message msg) {
 				dialog.dismiss();
+				if (names.size() != 0) {
 				Intent festivalsIntent = new Intent(FestivalAndroidActivity.this, FestivalsActivity.class);
 				festivalsIntent.putExtra("items", names);
                 startActivityForResult(festivalsIntent, 0);
+				} else {
+					Toast.makeText(FestivalAndroidActivity.this, "The events could not be downloaded", 100).show();
+				}
 			}
 		};
 	}
