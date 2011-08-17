@@ -1,6 +1,7 @@
 package api.festival;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -20,7 +21,7 @@ public class FestivalAndroidActivity extends Activity {
 	static final int size = 10;
 	private ProgressDialog dialog;
 	private API api;
-	private Button ok, art, book, international, jazz, mela, tattoo;
+	private Button ok, art, book, international, jazz, mela, tattoo, upcoming;
 	private EditText entry;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -110,6 +111,17 @@ public class FestivalAndroidActivity extends Activity {
 				new EventThread("festival", "tattoo").start();
 			}
 			
+		});
+		
+		upcoming = (Button) findViewById(R.id.upcoming);
+		upcoming.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View arg0) {
+				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
+						"", "Loading. Please wait...", true);
+				Calendar cal = Calendar.getInstance();
+				new EventThread("date_from", cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND)).start();
+			}
 		});
 		
 	}

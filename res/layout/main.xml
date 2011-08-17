@@ -28,6 +28,12 @@
         android:layout_alignTop="@id/ok"
         android:background="@android:drawable/editbox_background"/>
 	</RelativeLayout>
+	<Button
+        android:id="@+id/upcoming"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="@string/upcoming" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
