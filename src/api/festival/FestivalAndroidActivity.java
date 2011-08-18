@@ -41,7 +41,7 @@ public class FestivalAndroidActivity extends Activity {
 							.hideSoftInputFromWindow(entry.getWindowToken(), 0);
 					dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 							"", "Loading. Please wait...", true);
-					new EventThread("title", text).start();
+					new EventThread("title", text, false).start();
 				}
 			}
 
@@ -53,7 +53,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 						"", "Loading. Please wait...", true);
-				new EventThread("festival", "art").start();
+				new EventThread("festival", "art", false).start();
 			}
 			
 		});
@@ -64,7 +64,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 						"", "Loading. Please wait...", true);
-				new EventThread("festival", "book").start();
+				new EventThread("festival", "book", false).start();
 			}
 			
 		});
@@ -75,7 +75,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 						"", "Loading. Please wait...", true);
-				new EventThread("festival", "international").start();
+				new EventThread("festival", "international", false).start();
 			}
 			
 		});
@@ -86,7 +86,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 						"", "Loading. Please wait...", true);
-				new EventThread("festival", "jazz").start();
+				new EventThread("festival", "jazz", false).start();
 			}
 			
 		});
@@ -97,7 +97,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 						"", "Loading. Please wait...", true);
-				new EventThread("festival", "mela").start();
+				new EventThread("festival", "mela", false).start();
 			}
 			
 		});
@@ -108,7 +108,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 						"", "Loading. Please wait...", true);
-				new EventThread("festival", "tattoo").start();
+				new EventThread("festival", "tattoo", false).start();
 			}
 			
 		});
@@ -120,7 +120,7 @@ public class FestivalAndroidActivity extends Activity {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this,
 						"", "Loading. Please wait...", true);
 				Calendar cal = Calendar.getInstance();
-				new EventThread("date_from", cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND)).start();
+				new EventThread("date_from", cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND), true).start();
 			}
 		});
 		
@@ -130,10 +130,12 @@ public class FestivalAndroidActivity extends Activity {
 
 		private ArrayList<Item> names;
 		private String key, value;
+		private boolean performances;
 		
-		public EventThread(String key, String value) {
+		public EventThread(String key, String value, boolean performances) {
 			this.key = key;
 			this.value = value;
+			this.performances = performances;
 		}
 		
 		public void run() {
