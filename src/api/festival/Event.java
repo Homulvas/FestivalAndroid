@@ -2,7 +2,7 @@ package api.festival;
 
 import java.io.Serializable;
 
-public class Event implements Serializable, Comparable<Event> {
+public class Event implements Serializable {
 	/**
 	 * 
 	 */
@@ -33,10 +33,6 @@ public class Event implements Serializable, Comparable<Event> {
 
 	public Performances[] getPerformances() {
 		return performances;
-	}
-
-	public int compareTo(Event arg0) {
-		return title.compareTo(arg0.getTitle());
 	}
 	
 	public String getLatitude() {
