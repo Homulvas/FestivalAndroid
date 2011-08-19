@@ -117,11 +117,10 @@ public class FestivalAndroidActivity extends Activity {
 		upcoming.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View arg0) {
-				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "",
-						"Loading. Please wait...", true);
+				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "", "Loading. Please wait...", true);
 				Calendar cal = Calendar.getInstance();
 				new EventThread("date_from", cal.get(Calendar.YEAR) + "-"
-						+ cal.get(Calendar.MONTH) + "-"
+						+ (cal.get(Calendar.MONTH) + 1) + "-"
 						+ cal.get(Calendar.DAY_OF_MONTH) + " "
 						+ cal.get(Calendar.HOUR_OF_DAY) + ":"
 						+ cal.get(Calendar.MINUTE) + ":"
@@ -133,7 +132,7 @@ public class FestivalAndroidActivity extends Activity {
 
 	private class EventThread extends Thread {
 
-		private ArrayList<Event> names;
+		private ArrayList<Item> names;
 		private String key, value;
 		private boolean performances;
 
@@ -154,10 +153,26 @@ public class FestivalAndroidActivity extends Activity {
 			map.put("from", Integer.toString(from));
 			Item[] items = api.getEvents(map);
 
-			names = new ArrayList<Event>();
-			
-			if (performances) {
+			names = new ArrayList<Item>();
 
+			if (performances) {
+				while (items.length != 0) {
+					for (Item item : items) {
+						Item temp = item;
+						Performances[] list = item.getPerformances();
+						for (int a = 0; a < list.length; a++) {
+							String date = list[a].getStart();
+							if (date.compareTo(value) < 0) {
+								temp.setStart(date);
+								names.add(temp);
+							}
+						}
+					}
+					from += size;
+					map.put("from", Integer.toString(from));
+					items = api.getEvents(map);
+				}
+				Collections.sort(names, new PerformanceComparator());
 			} else {
 				while (items.length != 0) {
 					for (Item item : items) {

@@ -23,11 +23,11 @@ public class Performances implements Serializable{
 		return concession;
 	}
 
-	public CharSequence getStart() {
+	public String getStart() {
 		return start;
 	}
 
-	public CharSequence getEnd() {
+	public String getEnd() {
 		return end;
 	}
 }
