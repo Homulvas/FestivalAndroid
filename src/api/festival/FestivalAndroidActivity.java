@@ -168,9 +168,10 @@ public class FestivalAndroidActivity extends Activity {
 							}
 						}
 					}
-					from += size;
-					map.put("from", Integer.toString(from));
-					items = api.getEvents(map);
+//					from += size;
+//					map.put("from", Integer.toString(from));
+//					items = api.getEvents(map);
+					items = new Item[0];
 				}
 				Collections.sort(names, new PerformanceComparator());
 			} else {
@@ -197,6 +198,7 @@ public class FestivalAndroidActivity extends Activity {
 							FestivalAndroidActivity.this,
 							FestivalsActivity.class);
 					festivalsIntent.putExtra("items", names);
+					festivalsIntent.putExtra("performances", performances);
 					startActivityForResult(festivalsIntent, 0);
 				} else {
 					Toast.makeText(FestivalAndroidActivity.this,

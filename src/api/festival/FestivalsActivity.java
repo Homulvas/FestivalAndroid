@@ -38,7 +38,7 @@ public class FestivalsActivity extends Activity{
 		});
 		@SuppressWarnings("unchecked")
 		ArrayList<Item> events = (ArrayList<Item>) getIntent().getSerializableExtra("items");
-		list.setAdapter(new ItemAdapter(this, 0, events));
+		list.setAdapter(new ItemAdapter(this, 0, events, getIntent().getSerializableExtra("performances")));
 	}
 
 }
