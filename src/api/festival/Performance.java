@@ -1,6 +1,12 @@
 package api.festival;
 
-public class Performance{
+import java.io.Serializable;
+
+public class Performance extends Event implements Serializable, Comparable<Performance>{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8242616647037135301L;
 	private String title;
 	private String url;
 	private String start;

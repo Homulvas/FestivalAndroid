@@ -2,7 +2,7 @@ package api.festival;
 
 import java.io.Serializable;
 
-public class Item implements Serializable, Comparable<Item>{
+public class Item extends Event implements Serializable, Comparable<Item>{
 	/**
 	 * 
 	 */
