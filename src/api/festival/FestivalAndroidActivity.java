@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class FestivalAndroidActivity extends Activity {
-	static final int size = 10;
+	static final int size = 50;
 	static final String festival = "festival";
 	static final String key = "3FPE9X151AMKIqrv";
 	static final String secret = "V6KLOjmYaz8r_cYWTKIfVPfkHIiIj7Ha";
