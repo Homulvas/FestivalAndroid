@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class FestivalsActivity extends Activity{
 	private ListView list;
 	
+	@SuppressWarnings("unchecked")
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.festivals);
@@ -36,9 +37,7 @@ public class FestivalsActivity extends Activity{
 			}
 			
 		});
-		@SuppressWarnings("unchecked")
-		ArrayList<Item> events = (ArrayList<Item>) getIntent().getSerializableExtra("items");
-		list.setAdapter(new ItemAdapter(this, 0, events, getIntent().getSerializableExtra("performances")));
+		list.setAdapter(new ItemAdapter(this, 0, (ArrayList<Item>) getIntent().getSerializableExtra("items"), (ArrayList<String>) getIntent().getSerializableExtra("dates"),getIntent().getSerializableExtra("performances")));
 	}
 
 }

@@ -13,13 +13,15 @@ import android.widget.TextView;
 public class ItemAdapter extends ArrayAdapter<Item> {
 
 	private ArrayList<Item> items;
+	private ArrayList<String> dates;
 	private Context context;
 	private boolean performances;
 
 	public ItemAdapter(Context context, int textViewResourceId,
-			ArrayList<Item> objects, Serializable serializable) {
+			ArrayList<Item> objects, ArrayList<String> dates, Serializable serializable) {
 		super(context, textViewResourceId, objects);
 		items = objects;
+		this.dates = dates;
 		this.context = context;
 		performances = (Boolean) serializable;
 	}
@@ -46,7 +48,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 				TextView date = (TextView) v.findViewById(R.id.date);
 				
 				if (date != null) {
-					date.setText(e.getStart());
+					date.setText(dates.get(position));
 					
 				}
 			}

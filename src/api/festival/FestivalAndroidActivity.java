@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 public class FestivalAndroidActivity extends Activity {
 	static final int size = 10;
+	static final String festival = "festival";
+	static final String key = "3FPE9X151AMKIqrv";
+	static final String secret = "V6KLOjmYaz8r_cYWTKIfVPfkHIiIj7Ha";
 	private ProgressDialog dialog;
 	private API api;
 	private Button ok, art, book, international, jazz, mela, tattoo, upcoming;
@@ -28,7 +31,7 @@ public class FestivalAndroidActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		api = new API("3FPE9X151AMKIqrv", "V6KLOjmYaz8r_cYWTKIfVPfkHIiIj7Ha");
+		api = new API(key, secret);
 
 		ok = (Button) findViewById(R.id.ok);
 		entry = (EditText) findViewById(R.id.entry);
@@ -53,7 +56,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "",
 						"Loading. Please wait...", true);
-				new EventThread("festival", "art", false).start();
+				new EventThread(festival, "art", false).start();
 			}
 
 		});
@@ -64,7 +67,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "",
 						"Loading. Please wait...", true);
-				new EventThread("festival", "book", false).start();
+				new EventThread(festival, "book", false).start();
 			}
 
 		});
@@ -75,7 +78,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "",
 						"Loading. Please wait...", true);
-				new EventThread("festival", "international", false).start();
+				new EventThread(festival, "international", false).start();
 			}
 
 		});
@@ -86,7 +89,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "",
 						"Loading. Please wait...", true);
-				new EventThread("festival", "jazz", false).start();
+				new EventThread(festival, "jazz", false).start();
 			}
 
 		});
@@ -97,7 +100,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "",
 						"Loading. Please wait...", true);
-				new EventThread("festival", "mela", false).start();
+				new EventThread(festival, "mela", false).start();
 			}
 
 		});
@@ -108,7 +111,7 @@ public class FestivalAndroidActivity extends Activity {
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "",
 						"Loading. Please wait...", true);
-				new EventThread("festival", "tattoo", false).start();
+				new EventThread(festival, "tattoo", false).start();
 			}
 
 		});
@@ -133,6 +136,7 @@ public class FestivalAndroidActivity extends Activity {
 	private class EventThread extends Thread {
 
 		private ArrayList<Item> names;
+		private ArrayList<String> dates;
 		private String key, value;
 		private boolean performances;
 
@@ -154,17 +158,17 @@ public class FestivalAndroidActivity extends Activity {
 			Item[] items = api.getEvents(map);
 
 			names = new ArrayList<Item>();
+			dates = new ArrayList<String>();
 
 			if (performances) {
 				while (items.length != 0) {
 					for (Item item : items) {
-						Item temp = item;
 						Performances[] list = item.getPerformances();
 						for (int a = 0; a < list.length; a++) {
 							String date = list[a].getStart();
 							if (date.compareTo(value) < 0) {
-								temp.setStart(date);
-								names.add(temp);
+								names.add(item);
+								dates.add(date);
 							}
 						}
 					}
@@ -173,7 +177,7 @@ public class FestivalAndroidActivity extends Activity {
 //					items = api.getEvents(map);
 					items = new Item[0];
 				}
-				Collections.sort(names, new PerformanceComparator());
+				Collections.sort(names);
 			} else {
 				while (items.length != 0) {
 					for (Item item : items) {
@@ -198,6 +202,7 @@ public class FestivalAndroidActivity extends Activity {
 							FestivalAndroidActivity.this,
 							FestivalsActivity.class);
 					festivalsIntent.putExtra("items", names);
+					festivalsIntent.putExtra("dates", dates);
 					festivalsIntent.putExtra("performances", performances);
 					startActivityForResult(festivalsIntent, 0);
 				} else {
