@@ -12,6 +12,15 @@ public class Item extends Event implements Parcelable, Comparable<Item>{
 	private String url;
 	private String start;
 	
+	public Item(Parcel arg0) {
+		String[] data = new String[3];
+		
+		arg0.readStringArray(data);
+		this.title = data[0];
+		this.url = data[1];
+		this.start = data[2];
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -38,10 +47,20 @@ public class Item extends Event implements Parcelable, Comparable<Item>{
 		return 0;
 	}
 
-	@Override
 	public void writeToParcel(Parcel arg0, int arg1) {
-		// TODO Auto-generated method stub
-		
+		arg0.writeStringArray(new String[] {this.title, this.url, this.start});
 	}
+	
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+
+		public Item createFromParcel(Parcel arg0) {
+			return new Item(arg0);
+		}
+
+		public Item[] newArray(int arg0) {
+			return new Item[arg0];
+		}
+		
+	};
 
 }

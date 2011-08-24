@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class FestivalAndroidActivity extends Activity {
-	static final int size = 50;
+	static final int size = 10;
 	static final String festival = "festival";
 	static final String key = "3FPE9X151AMKIqrv";
 	static final String secret = "V6KLOjmYaz8r_cYWTKIfVPfkHIiIj7Ha";
@@ -170,10 +170,10 @@ public class FestivalAndroidActivity extends Activity {
 							}
 						}
 					}
-//					from += size;
-//					map.put("from", Integer.toString(from));
-//					items = api.getEvents(map);
-					items = new Item[0];
+					from += size;
+					map.put("from", Integer.toString(from));
+					items = api.getEvents(map);
+//					items = new Item[0];
 				}
 				Collections.sort(names);
 			} else {
@@ -199,6 +199,7 @@ public class FestivalAndroidActivity extends Activity {
 					Intent festivalsIntent = new Intent(
 							FestivalAndroidActivity.this,
 							FestivalsActivity.class);
+					
 					festivalsIntent.putExtra("items", names);
 					festivalsIntent.putExtra("performances", performances);
 					startActivityForResult(festivalsIntent, 0);
