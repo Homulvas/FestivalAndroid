@@ -136,7 +136,6 @@ public class FestivalAndroidActivity extends Activity {
 	private class EventThread extends Thread {
 
 		private ArrayList<Item> names;
-		private ArrayList<String> dates;
 		private String key, value;
 		private boolean performances;
 
@@ -158,7 +157,6 @@ public class FestivalAndroidActivity extends Activity {
 			Item[] items = api.getEvents(map);
 
 			names = new ArrayList<Item>();
-			dates = new ArrayList<String>();
 
 			if (performances) {
 				while (items.length != 0) {
@@ -167,8 +165,8 @@ public class FestivalAndroidActivity extends Activity {
 						for (int a = 0; a < list.length; a++) {
 							String date = list[a].getStart();
 							if (date.compareTo(value) < 0) {
+								item.setStart(date);
 								names.add(item);
-								dates.add(date);
 							}
 						}
 					}
@@ -202,7 +200,6 @@ public class FestivalAndroidActivity extends Activity {
 							FestivalAndroidActivity.this,
 							FestivalsActivity.class);
 					festivalsIntent.putExtra("items", names);
-					festivalsIntent.putExtra("dates", dates);
 					festivalsIntent.putExtra("performances", performances);
 					startActivityForResult(festivalsIntent, 0);
 				} else {
