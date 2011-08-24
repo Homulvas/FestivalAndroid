@@ -121,13 +121,7 @@ public class FestivalAndroidActivity extends Activity {
 
 			public void onClick(View arg0) {
 				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "", "Loading. Please wait...", true);
-				Calendar cal = Calendar.getInstance();
-				new EventThread("date_from", cal.get(Calendar.YEAR) + "-"
-						+ (cal.get(Calendar.MONTH) + 1) + "-"
-						+ cal.get(Calendar.DAY_OF_MONTH) + " "
-						+ cal.get(Calendar.HOUR_OF_DAY) + ":"
-						+ cal.get(Calendar.MINUTE) + ":"
-						+ cal.get(Calendar.SECOND), true).start();
+				new EventThread("date_from", null, true).start();
 			}
 		});
 
@@ -136,13 +130,19 @@ public class FestivalAndroidActivity extends Activity {
 	private class EventThread extends Thread {
 
 		private ArrayList<Item> names;
-		private String key, value;
+		private String key, value, value2;
 		private boolean performances;
 
 		public EventThread(String key, String value, boolean performances) {
 			this.key = key;
 			this.value = value;
 			this.performances = performances;
+			if (performances) {
+				Calendar cal = Calendar.getInstance();
+				this.value = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.HOUR_OF_DAY) + ":"	+ cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+		//		cal.add(Calendar.DAY_OF_MONTH, 1);
+				value2 = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.HOUR_OF_DAY) + ":"	+ cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+			}
 		}
 
 		public void run() {
@@ -154,6 +154,9 @@ public class FestivalAndroidActivity extends Activity {
 			map.put("size", Integer.toString(size));
 			int from = 0;
 			map.put("from", Integer.toString(from));
+			if (performances) {
+				map.put("date_to", value2);
+			}
 			Item[] items = api.getEvents(map);
 
 			names = new ArrayList<Item>();
@@ -164,7 +167,7 @@ public class FestivalAndroidActivity extends Activity {
 						Performances[] list = item.getPerformances();
 						for (int a = 0; a < list.length; a++) {
 							String date = list[a].getStart();
-							if (date.compareTo(value) < 0) {
+							if (date.compareTo(value2) < 0) {
 								item.setStart(date);
 								names.add(item);
 							}
@@ -200,9 +203,11 @@ public class FestivalAndroidActivity extends Activity {
 							FestivalAndroidActivity.this,
 							FestivalsActivity.class);
 					
-					festivalsIntent.putExtra("items", names);
-					festivalsIntent.putExtra("performances", performances);
-					startActivityForResult(festivalsIntent, 0);
+//					festivalsIntent.putExtra("items", names);
+//					festivalsIntent.putExtra("performances", performances);
+//					startActivityForResult(festivalsIntent, 0);
+					Toast.makeText(FestivalAndroidActivity.this,
+							Integer.toString(names.size()), 1000).show();
 				} else {
 					Toast.makeText(FestivalAndroidActivity.this,
 							"The events could not be downloaded", 100).show();
