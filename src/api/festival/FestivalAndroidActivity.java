@@ -121,7 +121,8 @@ public class FestivalAndroidActivity extends Activity {
 		upcoming.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View arg0) {
-				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "", "Loading. Please wait...", true);
+				dialog = ProgressDialog.show(FestivalAndroidActivity.this, "",
+						"Loading. Please wait...", true);
 				new EventThread("date_from", null, true).start();
 			}
 		});
@@ -140,9 +141,10 @@ public class FestivalAndroidActivity extends Activity {
 			this.performances = performances;
 			if (performances) {
 				Calendar cal = Calendar.getInstance();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				SimpleDateFormat sdf = new SimpleDateFormat(
+						"yyyy-MM-dd HH:mm:ss");
 				this.value = sdf.format(cal.getTime());
-				cal.add(Calendar.DAY_OF_MONTH, 1);
+				cal.add(Calendar.DAY_OF_MONTH, 3);
 				value2 = sdf.format(cal.getTime());
 			}
 		}
@@ -163,35 +165,31 @@ public class FestivalAndroidActivity extends Activity {
 
 			names = new ArrayList<Item>();
 
-			if (performances) {
-				while (items.length != 0) {
-					for (Item item : items) {
+			while (items.length != 0) {
+				for (Item item : items) {
+					if (performances) {
 						Performances[] list = item.getPerformances();
-						for (Performances perf: list) {
+						for (Performances perf : list) {
 							String date = perf.getStart();
-							if (date.compareTo(value) > 0 && date.compareTo(value2) < 0) {
-								Item current = (Item)item.clone();
+							if (date.compareTo(value) > 0
+									&& date.compareTo(value2) < 0) {
+								Item current = (Item) item.clone();
 								current.setStart(date);
 								names.add(current);
 							}
 						}
-					}
-					from += size;
-					map.put("from", Integer.toString(from));
-					items = api.getEvents(map);
-				}
-				Collections.sort(names, new ItemComparator());
-				
-			} else {
-				while (items.length != 0) {
-					for (Item item : items) {
+					} else {
 						names.add(item);
 					}
-					from += size;
-					map.put("from", Integer.toString(from));
-					items = api.getEvents(map);
 				}
-				Collections.sort(names);
+				from += size;
+				map.put("from", Integer.toString(from));
+				items = api.getEvents(map);
+			}
+			if (performances) {
+			Collections.sort(names, new ItemComparator());
+			} else {
+			Collections.sort(names);
 			}
 
 			handler.sendEmptyMessage(0);
@@ -205,7 +203,7 @@ public class FestivalAndroidActivity extends Activity {
 					Intent festivalsIntent = new Intent(
 							FestivalAndroidActivity.this,
 							FestivalsActivity.class);
-					
+
 					festivalsIntent.putExtra("items", names);
 					festivalsIntent.putExtra("performances", performances);
 					startActivityForResult(festivalsIntent, 0);
