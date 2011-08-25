@@ -9,6 +9,7 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,6 +32,12 @@ public class FestivalAndroidActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		
+		SharedPreferences settings = getSharedPreferences("keys", MODE_PRIVATE);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString("key", "3FPE9X151AMKIqrv");
+		editor.putString("secret", "V6KLOjmYaz8r_cYWTKIfVPfkHIiIj7Ha");
+		editor.commit();
 
 		api = new API(key, secret);
 

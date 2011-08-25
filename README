@@ -1,5 +1,5 @@
 TO-DO
-1. List shows date
-2. List can be sorted by date or alphabet
+DONE 1. List shows date
+DONE 2. List can be sorted by date or alphabet
 3. Events can be searched by distance to the gps coordinates
 4. Integrate GPS to map

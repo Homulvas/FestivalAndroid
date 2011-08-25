@@ -60,6 +60,7 @@ public class Item extends Event implements Parcelable, Comparable<Item>,
 		arg0.writeStringArray(new String[] { this.title, this.url, this.start });
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
 
 		public Item createFromParcel(Parcel arg0) {

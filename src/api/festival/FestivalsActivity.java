@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,7 +27,11 @@ public class FestivalsActivity extends Activity{
 					long arg3) {
 				Intent eventIntent = new Intent(arg1.getContext(), EventActivity.class);
 				String id = ((Item) list.getItemAtPosition((int) arg3)).getUrl();
-				Event eve = new API("3FPE9X151AMKIqrv", "V6KLOjmYaz8r_cYWTKIfVPfkHIiIj7Ha").getEventFromUrl(id);
+				
+				SharedPreferences settings = getSharedPreferences("keys", MODE_PRIVATE);
+				String key = settings.getString("key", null);
+				String secret = settings.getString("secret", null);
+				Event eve = new API(key, secret).getEventFromUrl(id);
 				
 				if (eve != null) {
 				eventIntent.putExtra("event", eve);
