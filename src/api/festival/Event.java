@@ -82,4 +82,8 @@ public class Event implements Serializable {
 	public Venue getVenue() {
 		return venue;
 	}
+	
+	public String getAdress() {
+		return venue.getAddress();
+	}
 }

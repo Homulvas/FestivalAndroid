@@ -32,12 +32,14 @@ public class EventActivity extends Activity{
 		final float lon = Float.parseFloat(event.getLongitude());
 		final float lat = Float.parseFloat(event.getLatitude());
 		if (lon != 0 || lat != 0) {
+			final String title = event.getTitle();
 		showMap.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
 				Intent mapIntent = new Intent(EventActivity.this, EventMap.class);
 				mapIntent.putExtra("longitude", lon);
 				mapIntent.putExtra("latitude", lat);
+				mapIntent.putExtra("title", title);
                 startActivityForResult(mapIntent, 0);
 			}
 			
