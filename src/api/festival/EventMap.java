@@ -26,7 +26,7 @@ public class EventMap extends MapActivity{
 	    
 	    List<Overlay> mapOverlays = mapView.getOverlays();
 	    Drawable drawable = this.getResources().getDrawable(R.drawable.maps);
-	    MapOverlay itemizedoverlay = new MapOverlay(drawable);
+	    MapOverlay itemizedoverlay = new MapOverlay(drawable, this);
 	    
 	    OverlayItem overlayitem = new OverlayItem(point, "1st message", "2nd message");
 	    
