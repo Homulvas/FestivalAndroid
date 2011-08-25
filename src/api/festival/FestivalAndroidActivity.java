@@ -1,5 +1,6 @@
 package api.festival;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -139,9 +140,10 @@ public class FestivalAndroidActivity extends Activity {
 			this.performances = performances;
 			if (performances) {
 				Calendar cal = Calendar.getInstance();
-				this.value = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.HOUR_OF_DAY) + ":"	+ cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
-		//		cal.add(Calendar.DAY_OF_MONTH, 1);
-				value2 = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.HOUR_OF_DAY) + ":"	+ cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				this.value = sdf.format(cal.getTime());
+				cal.add(Calendar.DAY_OF_MONTH, 1);
+				value2 = sdf.format(cal.getTime());
 			}
 		}
 
@@ -167,7 +169,7 @@ public class FestivalAndroidActivity extends Activity {
 						Performances[] list = item.getPerformances();
 						for (int a = 0; a < list.length; a++) {
 							String date = list[a].getStart();
-							if (date.compareTo(value2) < 0) {
+							if (date.compareTo(value) > 0 && date.compareTo(value2) < 0) {
 								item.setStart(date);
 								names.add(item);
 							}
@@ -176,7 +178,6 @@ public class FestivalAndroidActivity extends Activity {
 					from += size;
 					map.put("from", Integer.toString(from));
 					items = api.getEvents(map);
-//					items = new Item[0];
 				}
 				Collections.sort(names);
 			} else {
@@ -203,11 +204,10 @@ public class FestivalAndroidActivity extends Activity {
 							FestivalAndroidActivity.this,
 							FestivalsActivity.class);
 					
-//					festivalsIntent.putExtra("items", names);
-//					festivalsIntent.putExtra("performances", performances);
-//					startActivityForResult(festivalsIntent, 0);
-					Toast.makeText(FestivalAndroidActivity.this,
-							Integer.toString(names.size()), 1000).show();
+					festivalsIntent.putExtra("items", names);
+					festivalsIntent.putExtra("performances", performances);
+					startActivityForResult(festivalsIntent, 0);
+//					Toast.makeText(FestivalAndroidActivity.this, Integer.toString(names.size()), 1000).show();
 				} else {
 					Toast.makeText(FestivalAndroidActivity.this,
 							"The events could not be downloaded", 100).show();
