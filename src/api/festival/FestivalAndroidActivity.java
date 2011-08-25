@@ -167,11 +167,12 @@ public class FestivalAndroidActivity extends Activity {
 				while (items.length != 0) {
 					for (Item item : items) {
 						Performances[] list = item.getPerformances();
-						for (int a = 0; a < list.length; a++) {
-							String date = list[a].getStart();
+						for (Performances perf: list) {
+							String date = perf.getStart();
 							if (date.compareTo(value) > 0 && date.compareTo(value2) < 0) {
-								item.setStart(date);
-								names.add(item);
+								Item current = (Item)item.clone();
+								current.setStart(date);
+								names.add(current);
 							}
 						}
 					}
@@ -179,7 +180,8 @@ public class FestivalAndroidActivity extends Activity {
 					map.put("from", Integer.toString(from));
 					items = api.getEvents(map);
 				}
-				Collections.sort(names);
+				Collections.sort(names, new ItemComparator());
+				
 			} else {
 				while (items.length != 0) {
 					for (Item item : items) {
@@ -189,7 +191,7 @@ public class FestivalAndroidActivity extends Activity {
 					map.put("from", Integer.toString(from));
 					items = api.getEvents(map);
 				}
-				Collections.sort(names, new ItemComparator());
+				Collections.sort(names);
 			}
 
 			handler.sendEmptyMessage(0);
@@ -207,7 +209,6 @@ public class FestivalAndroidActivity extends Activity {
 					festivalsIntent.putExtra("items", names);
 					festivalsIntent.putExtra("performances", performances);
 					startActivityForResult(festivalsIntent, 0);
-//					Toast.makeText(FestivalAndroidActivity.this, Integer.toString(names.size()), 1000).show();
 				} else {
 					Toast.makeText(FestivalAndroidActivity.this,
 							"The events could not be downloaded", 100).show();

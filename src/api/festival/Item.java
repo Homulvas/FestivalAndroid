@@ -3,7 +3,8 @@ package api.festival;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Item extends Event implements Parcelable, Comparable<Item>{
+public class Item extends Event implements Parcelable, Comparable<Item>,
+		Cloneable {
 	/**
 	 * 
 	 */
@@ -11,28 +12,36 @@ public class Item extends Event implements Parcelable, Comparable<Item>{
 	private String title;
 	private String url;
 	private String start;
-	
+
 	public Item(Parcel arg0) {
 		String[] data = new String[3];
-		
+
 		arg0.readStringArray(data);
 		this.title = data[0];
 		this.url = data[1];
 		this.start = data[2];
 	}
 
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
+
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public String getUrl() {
 		return url;
 	}
-	
+
 	public String getStart() {
 		return start;
 	}
-	
+
 	public void setStart(String string) {
 		start = string;
 	}
@@ -48,9 +57,9 @@ public class Item extends Event implements Parcelable, Comparable<Item>{
 	}
 
 	public void writeToParcel(Parcel arg0, int arg1) {
-		arg0.writeStringArray(new String[] {this.title, this.url, this.start});
+		arg0.writeStringArray(new String[] { this.title, this.url, this.start });
 	}
-	
+
 	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
 
 		public Item createFromParcel(Parcel arg0) {
@@ -60,7 +69,7 @@ public class Item extends Event implements Parcelable, Comparable<Item>{
 		public Item[] newArray(int arg0) {
 			return new Item[arg0];
 		}
-		
+
 	};
 
 }

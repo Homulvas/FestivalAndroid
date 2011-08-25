@@ -37,8 +37,6 @@ public class FestivalsActivity extends Activity{
 			}
 			
 		});
-//		ArrayList<Item> aaa = (ArrayList<Item>) getIntent().getSerializableExtra("items");
-//		Toast.makeText(FestivalsActivity.this, Integer.toString(aaa.size()), 100).show();
 		list.setAdapter(new ItemAdapter(this, 0, (ArrayList<Item>) getIntent().getSerializableExtra("items") ,getIntent().getSerializableExtra("performances")));
 	}
 
