@@ -17,6 +17,8 @@ import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
 public class EventMap extends MapActivity{
+	private LocationManager lMan;
+	private LocationListener locationListener;
 	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -33,11 +35,14 @@ public class EventMap extends MapActivity{
 	    Drawable drawable = this.getResources().getDrawable(R.drawable.maps);
 	    MapOverlay itemizedoverlay = new MapOverlay(drawable, this);
 	    
-	    LocationManager lMan = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+	    lMan = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 	    
-	    LocationListener locationListener = new LocationListener() {
+	    locationListener = new LocationListener() {
 	        public void onLocationChanged(Location location) {
 	        	Toast.makeText(EventMap.this, "Trolololo", 100).show();
+	        	GeoPoint loc = new GeoPoint((int) location.getLatitude() * 1000000, (int)location.getLongitude() * 1000000);
+	        	OverlayItem pin = new OverlayItem(loc, null, null);
+	        	itemizedoverlay.addOverlay(pin);
 	        }
 
 	        public void onStatusChanged(String provider, int status, Bundle extras) {}
@@ -47,12 +52,17 @@ public class EventMap extends MapActivity{
 	        public void onProviderDisabled(String provider) {}
 	      };
 	      
-	    lMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 0, locationListener);
+	    lMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 100, 0, locationListener);
 	    
 	    OverlayItem overlayitem = new OverlayItem(point, (String) getIntent().getSerializableExtra("title"), null);
 	    
 	    itemizedoverlay.addOverlay(overlayitem);
 	    mapOverlays.add(itemizedoverlay);
+	}
+	
+	public void onPause() {
+		super.onPause();
+		lMan.removeUpdates(locationListener);
 	}
 	
 	protected boolean isRouteDisplayed() {
