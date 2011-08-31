@@ -34,10 +34,15 @@ public class MapOverlay extends ItemizedOverlay {
 
 	protected boolean onTap(int index) {
 		  OverlayItem item = mOverlays.get(index);
+		  String title = item.getTitle();
+		  if (title != null) {
 		  AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-		  dialog.setTitle(item.getTitle());
+		  dialog.setTitle(title);
 		  dialog.setMessage(item.getSnippet());
 		  dialog.show();
 		  return true;
+		  } else {
+			  return false;
+		  }
 		}
 }
